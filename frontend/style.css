@@ -1,0 +1,394 @@
+/* ---------- Design tokens ---------- */
+:root {
+  --paper: #F6F3EC;
+  --paper-raised: #FFFFFF;
+  --ink: #1E2A26;
+  --ink-soft: #5B6864;
+  --teal: #1B4B43;
+  --teal-deep: #103430;
+  --stamp: #B5432F;
+  --stamp-soft: #E8C9BC;
+  --line: #D9D2C2;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, .brand-name {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.hidden { display: none !important; }
+
+/* ---------- Layout shell ---------- */
+.app {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+}
+
+.topbar {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 28px 0 20px;
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: var(--paper);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.brand-name {
+  font-size: 20px;
+  color: var(--teal-deep);
+}
+
+.tabs {
+  display: flex;
+  gap: 6px;
+}
+
+.tab-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 9px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.tab-btn:hover { color: var(--teal-deep); }
+
+.tab-btn.active {
+  background: var(--teal);
+  color: #fff;
+}
+
+.tab-btn:focus-visible {
+  outline: 2px solid var(--teal);
+  outline-offset: 2px;
+}
+
+.view-area { padding-top: 36px; }
+
+.view { display: none; }
+.view.active { display: block; animation: fadeIn 0.25s ease; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.view-heading { margin-bottom: 28px; }
+
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--stamp);
+  margin: 0 0 6px;
+}
+
+.view-heading h1 {
+  font-size: 30px;
+  margin: 0;
+  color: var(--teal-deep);
+}
+
+.loading-text { color: var(--ink-soft); font-style: italic; }
+
+/* ---------- Doctors grid ---------- */
+.doctors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.doctor-card {
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+.doctor-card .spec-tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--teal);
+  background: #EAF0EE;
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.doctor-card h3 {
+  margin: 4px 0 0;
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 19px;
+  color: var(--ink);
+}
+
+.doctor-card .fee {
+  margin-top: 10px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.doctor-card .fee strong {
+  color: var(--stamp);
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.doctor-card .book-link {
+  margin-top: 12px;
+  align-self: flex-start;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--teal);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ---------- Booking form ---------- */
+.booking-form {
+  max-width: 460px;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+input, select {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(27, 75, 67, 0.12);
+}
+
+.field-error {
+  font-size: 12px;
+  color: var(--stamp);
+  min-height: 14px;
+}
+
+.fee-preview {
+  font-size: 14px;
+  background: #EAF0EE;
+  color: var(--teal-deep);
+  padding: 10px 12px;
+  border-radius: 6px;
+}
+
+.fee-preview strong { font-family: 'IBM Plex Mono', monospace; }
+
+.btn-primary {
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  background: var(--teal);
+  color: #fff;
+  border: none;
+  padding: 12px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.btn-primary:hover { background: var(--teal-deep); }
+.btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.form-status {
+  font-size: 13px;
+  min-height: 16px;
+  margin: 0;
+}
+
+.form-status.success { color: var(--teal); font-weight: 600; }
+.form-status.error { color: var(--stamp); font-weight: 600; }
+
+/* ---------- Appointment stubs (signature element) ---------- */
+.stub-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.stub {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  background: var(--paper-raised);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+}
+
+.stub-main {
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stub-main .stub-patient {
+  font-family: 'Fraunces', serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.stub-main .stub-doctor {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.stub-main .stub-datetime {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+  color: var(--teal-deep);
+  margin-top: 6px;
+}
+
+.stub-perf {
+  border-left: 2px dashed var(--line);
+  width: 0;
+}
+
+.stub-side {
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #FBF9F4;
+  min-width: 120px;
+}
+
+.stamp-mark {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--stamp);
+  border: 1.5px solid var(--stamp);
+  border-radius: 4px;
+  padding: 4px 8px;
+  transform: rotate(-4deg);
+}
+
+.cancel-link {
+  font-size: 12px;
+  color: var(--ink-soft);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.cancel-link:hover { color: var(--stamp); }
+
+.empty-state {
+  color: var(--ink-soft);
+  font-style: italic;
+  padding: 20px 0;
+}
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--teal-deep);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  z-index: 50;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 560px) {
+  .field-row { grid-template-columns: 1fr; }
+  .stub { grid-template-columns: 1fr; }
+  .stub-perf { display: none; }
+  .stub-side { flex-direction: row; justify-content: space-between; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .view.active { animation: none; }
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Clinic Token · Appointment Portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Mono:wght@500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="app">
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">+</span>
+      <span class="brand-name">Clinic Token</span>
+    </div>
+    <nav class="tabs" id="nav-tabs">
+      <button class="tab-btn active" data-view="doctors">Doctors</button>
+      <button class="tab-btn" data-view="book">Book Appointment</button>
+      <button class="tab-btn" data-view="appointments">My Appointments</button>
+    </nav>
+  </header>
+
+  <main class="view-area">
+
+    <!-- VIEW 1: Doctors list -->
+    <section id="view-doctors" class="view active">
+      <div class="view-heading">
+        <p class="eyebrow">Consult a specialist</p>
+        <h1>Choose from our OPD panel</h1>
+      </div>
+      <div id="doctors-grid" class="doctors-grid">
+        <p class="loading-text">Loading doctors…</p>
+      </div>
+    </section>
+
+    <!-- VIEW 2: Book appointment -->
+    <section id="view-book" class="view">
+      <div class="view-heading">
+        <p class="eyebrow">Reserve your slot</p>
+        <h1>Book an appointment</h1>
+      </div>
+
+      <form id="booking-form" class="booking-form" novalidate>
+        <div class="field">
+          <label for="patient-name">Patient name</label>
+          <input type="text" id="patient-name" name="patient_name" placeholder="e.g. Shyamli Rao" autocomplete="name" />
+          <span class="field-error" id="err-patient-name"></span>
+        </div>
+
+        <div class="field">
+          <label for="doctor-select">Doctor</label>
+          <select id="doctor-select" name="doctor_id">
+            <option value="" disabled selected>Select a doctor</option>
+          </select>
+          <span class="field-error" id="err-doctor"></span>
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label for="appt-date">Date</label>
+            <input type="date" id="appt-date" name="appointment_date" />
+            <span class="field-error" id="err-date"></span>
+          </div>
+          <div class="field">
+            <label for="appt-time">Time</label>
+            <input type="time" id="appt-time" name="appointment_time" />
+            <span class="field-error" id="err-time"></span>
+          </div>
+        </div>
+
+        <div id="fee-preview" class="fee-preview hidden">
+          Consultation fee: <strong id="fee-amount">₹0</strong>
+        </div>
+
+        <button type="submit" class="btn-primary" id="submit-btn">Confirm booking</button>
+        <p class="form-status" id="form-status"></p>
+      </form>
+    </section>
+
+    <!-- VIEW 3: Appointments (the "token stub" signature view) -->
+    <section id="view-appointments" class="view">
+      <div class="view-heading">
+        <p class="eyebrow">Your queue</p>
+        <h1>My appointments</h1>
+      </div>
+      <div id="appointments-list" class="stub-list">
+        <p class="loading-text">Loading appointments…</p>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="toast" class="toast hidden"></div>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
